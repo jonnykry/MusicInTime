@@ -1,3 +1,5 @@
+package com;
+
 import de.umass.lastfm.User;
 
 import java.util.Date;
@@ -22,12 +24,14 @@ public class UserData {
 
     public static int totalDays = 0;
 
-    public static int totalYears = 0;
+    public static double totalYears = 0;
+    
+    public static String username = "";
 
     public static void getData() {
 
-        String key = "***";
-        String username = "***";
+        String key = "c64600ddca04dfc310703c59fe1b5230";
+        username = "jonnydoesmusic";
 
         User user = User.getInfo(username, key);
 
@@ -43,6 +47,7 @@ public class UserData {
         totalMinutes = totalSeconds / 60;
         totalHours = totalMinutes / 60;
         totalDays = totalHours / 24;
+        totalYears = ((double) totalDays) / 365;
         totalYears = totalDays / 365;
     }
 

@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com;
 
 import java.io.IOException;
@@ -15,12 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Samsung
+ * @author jonnykry
  */
 @WebServlet(name = "MusicInTime", urlPatterns = {"/MusicInTime"})
 public class MusicInTime extends HttpServlet {
 
+    private static void run() {
+       UserData.getData();
+    }
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -33,21 +29,28 @@ public class MusicInTime extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        try (PrintWriter out = response.getWriter()) {           
+            run();
             /* TODO output your page here. You may use following sample code. */
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet MusicInTime</title>");            
+            out.println("<title>Servlet NewServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>MusicInTime" + request.getContextPath() + "</h1>");
+            out.println("<h1>Hello, " + UserData.username + ".  Your playcount is " + UserData.playcount + ".</h1>");
+            out.println("<h1>That means you've spent (roughly) " + UserData.totalSeconds + " seconds of your life listening to music!</h1>");
+            out.println("<h1>or " + UserData.totalMinutes + " minutes</h1>");
+            out.println("<h1>or " + UserData.totalHours + " hours</h1>");
+            out.println("<h1>or " + UserData.totalDays + " days</h1>");
+            out.println("<h1>or " + UserData.totalYears + " years</h1>");
+            out.println("<title>Servlet MusicInTime</title>");            
+            out.println("</head>");
             out.println("</body>");
             out.println("</html>");
         }
     }
-
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -75,15 +78,4 @@ public class MusicInTime extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }
